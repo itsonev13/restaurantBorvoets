@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>Borovets-Yambol</title>
+    <link th:href="@{/css/homesheet.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <div class="img-wrap">
+                    <img class="navlogoimg" src="/img/borovets2.JPG" />
+                </div>
+            </a>
+            <button class="navbar-toggler nav-tog" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse col-lg-7 col-xl-5" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto  coll-menu">
+                    <li class="nav-item active a">
+                        <a class="nav-link navlinks" href="home">Начало</a>
+                    </li>
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="menu">Меню</a>
+                    </li>
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="/lunch">Обедно меню</a>
+                    </li>
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="#">Промоции</a>
+                    </li>
+                    <li class="nav-item active a">
+                        <i class="fas fa-shopping-cart" onclick="toggleOrder()"></i>
+                    </li>
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!-- shopingcart -->
+     <div id="shopingCart">
+    <div class="container-fluid shopingcart-container" id="shopingContainer">
+    	<div class="d-flex flex-row ">
+                <div class="h-1 col-lg-12 orderhead">Поръчка
+                </div>
+   		 </div>
+   		 <div class="d-flex flex-row ">
+   			<div class="p1 col-7 col-sm-7 col-md-7 col-lg-7 col-xl-7 dish">Ястие</div>
+            <div class="p1 col-2 col-sm-2 col-md-2 col-lg-2 col-xl-2 pricecart">Цена</div>
+            <div class="p1 col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3  quantity">Брой</div>
+         </div>
+   	</div>
+   	    <div class="container-fluid"id="total"></div>
+   	   	   <div class="modal fade" id="ordermodal">
+   	   		<div class="modal-dialog modal-md">
+   	   			<div class="modal-content">
+	   	   			<div class="modal-header orderboxhead">
+	   	   				<h1>Доставка</h1>
+	   	   			</div>
+	   	   			<div class="modal-body">
+	   	   				<div class="orderbox">
+                    		 <form class="orderForm">
+						 		 <div class="form-group ordername needs-validation">
+						    		<label for="exampleFormControlSelect1">Име</label>
+						    		<input type="text" class="form-control" id="inputordername"placeholder="Вашето име" required="">
+						  			<div class="valid-feedback">Valid</div>
+						  			<div class="invalid-feedback">Please Fill Out This Field.</div>
+						  		</div>
+						  		<div class="form-group orderaddress needs-validation">
+						    		<label for="exampleFormControlSelect2">Адрес</label>
+						    		<input type="text" class="form-control" id="inputorderadress" placeholder="Вашия адрес"required="">
+						  		</div>		
+						  		<div class="form-group orderphone needs-validation" >
+						   		 	<label for="exampleFormControlSelect2" >Телефон</label>
+						    		<input type="text" class="form-control"id="inputorderphone" placeholder="Вашия телефон"required="">
+						  		</div>
+						  		<div class="form-group orderemail needs-validation" >
+						   		 	<label for="exampleFormControlSelect2" >Имейл</label>
+						    		<input type="text" class="form-control"id="inputorderemail" placeholder="Вашия имейл"required="">
+						  		</div>
+						  		<div class="form-group note" >
+						   		 	<label for="exampleFormControlSelect2" >Забележки</label>
+									<textarea class="form-control" id="textareanote" rows="3"></textarea>
+								</div>
+								<div class="sendorderbutton">
+								<input type="submit" class="btn btn-primary" onclick="validateOrder()"value="Поръчай">
+								</div>
+							</form>
+                    	</div>
+	   	   			</div>
+	   	   			<div class="modal-footer">
+	   	   			</div>
+	   	   		</div>   	
+	   	   	</div>
+   			</div>
+   		<div class="d-flex flex-row orderBtnWrap">
+   			<button type="button" class="btn btn-outline-success pull-right orderbtn" data-toggle="modal" data-target="#ordermodal">Поръчай</button>	
+   		</div>
+    </div>
+    <!--menuitems-->
+    <div class="container-fluid menu-container">
+        <div class="d-flex flex-row my-flex-container-topic">
+          	 		 <div class="p-2 my-flex-topic col-lg-12 course">Обедно меню
+          	 		 	</div>  
+        </div>
+         <div class="d-flex flex-row my-flex-container-items" th:each="item:${lunchitems}">
+            	<div class="p-2 my-flex-item">
+            		<div class="name" th:text="${item.name}">
+            			</div>
+            		<div  class="menudescription" th:text="${item.description}">
+            			</div>
+            			<div class="d-flex flex-row">
+            				<div class="prices" th:text="${item.price}+0лв">
+            				</div>
+            			</div>
+            			<div class="d-flex flex-row">
+                		<button type="button" class="btn btn-outline-success addToCartBtn" th:id="${item.id}" onclick="addToCartLunch(this.id)">Добави към поръчка</button>
+                    </div>
+            	</div>
+        	 </div>	
+    </div>
+
+
+    <!-- footer-->
+    <div class="container-fluid padding">
+        <div class="row text-center padding">
+            <div class="col-md-12">
+                <hr class="light" />
+                <h1>Контакти:</h1>
+                <div class="contacts">
+                    <a><i class="fas fa-phone-alt"></i><p>0895 618 696</p></a>
+                    <a href="https://www.facebook.com/restorant.borovetz"> <i class="fab fa-facebook"></i> <p>Ресторант "Боровец"</p></a>
+                    <a href="https://www.instagram.com/doriantsonev/?hl=bg"> <i class="fab fa-instagram"></i> <p>doriantsonev</p></a>
+                </div>
+                <div class="col-12">
+                    <hr class="light" />
+                </div>
+
+            </div>
+        </div>
+    </div>	
+    <script type="text/javascript" th:src="@{\js\cartlogic.js}"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</body>
+</html>

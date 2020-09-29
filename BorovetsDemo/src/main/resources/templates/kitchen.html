@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>Borovets-Yambol</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link th:href="@{/css/homesheet.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body class=kitchenbody>
+<div class="container-fluid order-container">
+	<div class="h-1 col-lg-12 orderheading">Поръчки</div>
+        <div class="client"th:each="cli:${client}">
+            <div class="d-flex flex-row cleintinfo">
+            <div class="text-break d-flex flex-row clientname col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" th:text="'Име: '+ ${cli.name}">
+            </div>
+            <div class="text-break d-flex flex-row clientemail col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" th:text="'Имейл: '+ ${cli.email}">
+            </div>
+            <div class="text-break d-flex flex-row clientphone col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3" th:text="'Телефон: '+ ${cli.phone}">
+             </div>
+             <div class="text-break d-flex flex-row clientaddress col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3"th:text="'Адрес: '+ ${cli.address}">
+             </div>
+            </div>
+                <div class="p-2 flex-row my-flex-cleintinfo col-lg-12 clientnote" th:text="'Забележки: '+ ${cli.note}">
+                </div>
+            <div class="d-flex flex-row my-flex-container-order" th:each="orde:${orders}" th:if="${cli.id}==${orde.client_id}" >
+                <div class="p-2 my-flex-order">
+                    <div class="ordername" th:text="${orde.dish_name}+'-'+${orde.quantity}+' път'" th:if="${orde.quantity}=='1'">         
+                	</div>
+                	<div class="ordername" th:text="${orde.dish_name}+'-'+${orde.quantity}+' пъти'"th:unless="${orde.quantity}=='1'">
+                    </div>
+            	</div>
+        	</div>
+        	<div class="d-flex flex-row ">
+        	 <button type="button" class="btn-md btn-outline-success readybtn " th:id="'radybtn'+${cli.id}" onclick="readyorder(this.id)" >Готова поръчка.</button>
+        	</div>
+  	</div>	
+    </div>
+ <script type="text/javascript" th:src="@{\js\kitchenscript.js}"></script>
+</body>
+</html>

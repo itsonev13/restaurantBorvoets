@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>Borovets-Yambol</title>
+    <link th:href="@{/css/homesheet.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top" >
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/home"><div class="img-wrap">
+            <img  class="navlogoimg" src="/img/borovets2.JPG"/></div> </a>
+        <button class="navbar-toggler nav-tog" type="button" data-toggle="collapse"  data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse col-lg-7 col-xl-5" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto  coll-menu">
+                <li class="nav-item active a">
+                    <a class="nav-link navlinks" href="/home">Начало</a>
+                </li>
+                <li class="nav-item asd">
+                    <a class="nav-link navlinks" href="/menu">Меню</a>
+                </li>
+                <li class="nav-item asd">
+                    <a class="nav-link navlinks" href="/lunch">Обедно меню</a>
+                </li>
+                <li class="nav-item asd">
+                    <a class="nav-link navlinks" href="#">Промоции</a>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+    </nav>
+    <!--ad slider-->
+<div id="slides" class="carousel slide" data-ride="carousel">
+    <ul class="carousel-indicators ">
+        <li data-target="#slides" data-slide-to="0" class="active"></li>
+        <li data-target="#slides" data-slide-to="1"></li>
+        <li data-target="#slides" data-slide-to="2"></li>
+        <li data-target="#slides" data-slide-to="3"></li>
+    </ul>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="adimg" src="/img/ad1.jpg" />
+        </div>
+        <div class="carousel-item">
+            <img class="adimg" src="/img/ad2.jpg" />
+        </div>
+        <div class="carousel-item">
+            <img class="adimg" src="/img/ad3.jpg" />
+        </div>
+        <div class="carousel-item">
+            <img class="adimg" src="/img/ad4.JPG" />
+        </div>
+    </div>
+</div>
+   <!-- footer-->
+    <div class="container-fluid padding">
+        <div class="row text-center padding">
+            <div class="col-md-12">
+                <hr class="light" />
+                <h1>Контакти:</h1>
+                <div class="contacts">
+                    <a><i class="fas fa-phone-alt"></i><p>0895 618 696</p></a>
+                    <a href="https://www.facebook.com/restorant.borovetz"> <i class="fab fa-facebook"></i> <p>Ресторант "Боровец"</p></a>
+                    <a href="https://www.instagram.com/doriantsonev/?hl=bg"> <i class="fab fa-instagram"></i> <p>doriantsonev</p></a>
+                </div>
+                <div class="col-12">
+                    <hr class="light" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+</body>
+</html>
