@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"
+          content="ie=edge">
+    <title>Borovets-Yambol</title>
+    <link th:href="@{/css/homesheet.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+</head>
+<body>
+    <!--navigation bar-->
+    <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/home">
+                <div class="img-wrap">
+                    <img class="navlogoimg" src="/img/borovets2.JPG"/>
+                </div>
+            </a>
+            <button class="navbar-toggler nav-tog" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse col-lg-7 col-xl-5" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto  coll-menu">
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="/admin/menu">Меню</a>
+                    </li>
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="/admin/lunch">Обедно меню</a>
+                    </li>
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="#">Промоции</a>
+                    </li>
+                    <li class="nav-item asd">
+                        <a class="nav-link navlinks" href="/logout">Изход</a>
+                    </li>
+                    
+
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <!--menuitems-->
+    <div class="container-fluid menu-container">
+            <div class="d-flex flex-row my-flex-container-items" th:each="item:${lunchitems}">
+                <div class="p-2 my-flex-item">
+                    <div class="name" th:text="${item.name}">
+                    </div>
+                    <div class="description" th:text="${item.description}">
+                    </div>
+                    <div class="d-flex flex-row">
+                    <div class="prices" th:text="${item.price}+0лв">
+                    </div> 
+                    </div> 
+                    <div class="d-flex flex-row">
+	                	<button class="btn btn-outline-danger btn-delete" th:id="${item.id}" onclick="deleteLunchItem(this.id)">Delete</button>
+	                    <button class="btn btn-outline-primary btn-update"th:id="${item.id}"onclick="updateLunchItemform(this.id)">Update</button>
+                    </div>
+                    <div class="d-flex flex-row">
+                    	<div class="update-window">
+                    		 <form class="updateForm"th:id="'updatelunchform'+${item.id}">
+						 		 <div class="form-group name">
+						    		<label for="exampleFormControlSelect1">Ново име на ястието</label>
+						    		<input type="text" class="form-control name" th:id="${item.id}" th:value="${item.name}">
+						  		</div>
+						  		<div class="form-group price">
+						    		<label for="exampleFormControlSelect2">Нова цена на ястие</label>
+						    		<input type="text" class="form-control price" th:id="${item.id}" th:value="${item.price}">
+						  		</div>
+						  		<div class="form-group description">
+						   		 	<label for="exampleFormControlSelect2" >Ново описание</label>
+						    		<input type="text" class="form-control"th:value="${item.description}"placeholder="Описание">
+						  		</div>
+						  <button type="submit" class="btn btn-primary submit" th:id="${item.id}"onclick="updateLunchItem(this.id)">Обнови</button>
+					</form>
+                    	</div>
+                    </div>
+            	</div>          
+           </div>
+ 				<div class="d-flex flex-row">
+                	<button class="btn btn-outline-success btn-add col-lg-12 col-xl-12" id="lunchadd" onclick="hideLunchAdd()">Add</button>           	
+       			 </div>
+       			 <div id="form">
+	       			 <form class="addMenuItemForm"id="lunchaddform">
+						  <div class="form-group name">
+						    <label for="exampleFormControlSelect1">Име на ястие</label>
+						    <input type="text" class="form-control name"placeholder="Въведи ястие">
+						  </div>
+						  <div class="form-group price">
+						    <label for="exampleFormControlSelect2">Цена на ястие</label>
+						    <input type="text" class="form-control price"placeholder="Цена">
+						  </div>
+						  <div class="form-group description">
+						    <label for="exampleFormControlSelect2">Описание</label>
+						    <input type="text" class="form-control"placeholder="Описание">
+						  </div>
+						   <div class="form-check">
+						    <label class="form-check-label" for="exampleCheck-2">Без описание</label>
+						    <div class="form-control-lg"  > 
+						  		<input type="checkbox" class="form-check-input"onclick="hideLunchDesc()">
+							</div>
+						  </div>
+						  <button type="submit" class="btn btn-primary submit"onclick="addLunchItem()">Добави към менюто</button>
+					</form>
+				</div>
+			</div>
+
+
+    <!-- footer-->
+    <div class="container-fluid padding">
+        <div class="row text-center padding">
+            <div class="col-md-12">
+                <hr class="light" />
+                <h1>Контакти:</h1>
+                <div class="contacts">
+                    <a><i class="fas fa-phone-alt"></i><p>0895 618 696</p></a>
+                    <a href="https://www.facebook.com/restorant.borovetz"> <i class="fab fa-facebook"></i> <p>Ресторант "Боровец"</p></a>
+                    <a href="https://www.instagram.com/doriantsonev/?hl=bg"> <i class="fab fa-instagram"></i> <p>doriantsonev</p></a>
+                </div>
+                <div class="col-12">
+                    <hr class="light" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <script type="text/javascript" th:src="@{\js\script.js}"></script>
+</body>
+</html>
